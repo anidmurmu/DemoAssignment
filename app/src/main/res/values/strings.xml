@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">DemoAssignment</string>
+  <string name="email_hint">Email</string>
+  <string name="cont">Continue</string>
+  <string name="email_empty">Email cannot be empty</string>
+  <string name="email_error">Please enter valid email id</string>
+</resources>

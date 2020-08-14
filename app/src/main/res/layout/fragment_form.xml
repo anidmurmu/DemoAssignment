@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+    <variable
+      name="viewModel"
+      type="in.example.demoassignment.view.form.FormViewModel" />
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    >
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/tilEmailId"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:hint="@string/email_hint"
+      android:padding="4dp"
+      app:errorText="@{viewModel.liveDataFormViewState.emailIdError}"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent">
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etEmailId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@={viewModel.liveDataFormViewState.emailId}"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+      android:id="@+id/btnSubmit"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginTop="24dp"
+      android:onClick="@{() -> viewModel.onViewClick(@id/on_click_btn_continue, @id/on_click_btn_continue)}"
+      android:text="@string/cont"
+      android:textColor="#ffffff"
+      android:background="@color/cobalt"
+      app:layout_constraintTop_toBottomOf="@id/tilEmailId"/>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

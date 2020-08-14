@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/navigation_main_graph"
+  app:startDestination="@id/formFragment">
+
+  <fragment
+    android:id="@+id/userProfileFragment"
+    android:name="in.example.demoassignment.view.userprofile.UserProfileFragment"
+    android:label="UserProfileFragment" />
+  <fragment
+    android:id="@+id/formFragment"
+    android:name="in.example.demoassignment.view.form.FormFragment"
+    android:label="FormFragment" >
+    <action
+      android:id="@+id/action_formFragment_to_userProfileFragment"
+      app:destination="@id/userProfileFragment"
+      app:popUpTo="@id/formFragment"
+      app:popUpToInclusive="true" />
+    <argument app:argType="string"
+      android:name="email"
+      android:defaultValue="null"/>
+  </fragment>
+</navigation>
