@@ -3,15 +3,13 @@ package `in`.example.domain.usecase
 import `in`.example.domain.base.Resource
 import `in`.example.domain.model.UserProfileRequestUiModel
 import `in`.example.domain.model.UserProfileResponseUiModel
-import `in`.example.domain.model.UserProfileUiModel
 import `in`.example.domain.repository.UserProfileRepository
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.core.Observable
 
 interface GetUserProfileUseCase {
   fun getUserProfile(request: UserProfileRequestUiModel): Observable<Resource<UserProfileResponseUiModel>>
-  suspend fun insertUserProfile(userProfile: UserProfileUiModel)
-  suspend fun getAllUserProfiles(): MutableLiveData<MutableList<UserProfileUiModel>>
+  /*suspend fun insertUserProfile(userProfile: UserProfileUiModel)
+  suspend fun getAllUserProfiles(): MutableLiveData<MutableList<UserProfileUiModel>>*/
 }
 
 class GetUserProfileUseCaseImpl(private val repository: UserProfileRepository) : GetUserProfileUseCase {
@@ -27,11 +25,11 @@ class GetUserProfileUseCaseImpl(private val repository: UserProfileRepository) :
       }
   }
 
-  override suspend fun insertUserProfile(userProfile: UserProfileUiModel) {
+  /*override suspend fun insertUserProfile(userProfile: UserProfileUiModel) {
     repository.insertUserProfile(userProfile)
   }
 
   override suspend fun getAllUserProfiles(): MutableLiveData<MutableList<UserProfileUiModel>> {
     return repository.getAllUserProfiles()
-  }
+  }*/
 }

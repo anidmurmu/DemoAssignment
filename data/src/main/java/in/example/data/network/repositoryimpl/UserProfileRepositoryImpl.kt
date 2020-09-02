@@ -18,11 +18,9 @@ import applyLoading
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class UserProfileRepositoryImpl(private val userProfileDao: UserProfileDao, private val dataSource: UserProfileService,
+class UserProfileRepositoryImpl(private val dataSource: UserProfileService,
                                 private val userProfileResponseMapper: UserProfileResponseMapper,
-                                private val userProfileRequestMapper: UserProfileRequestMapper,
-                                private val userProfileUiToEntityMapper: UserProfileUiToEntityMapper,
-                                private val userProfileEntityToUiMapper: UserProfileEntityToUiMapper
+                                private val userProfileRequestMapper: UserProfileRequestMapper
 ) : UserProfileRepository {
 
   //private val userProfileDao: UserProfileDao? = UserProfileDatabase.getDatabase()?.getUserProfileDao()
@@ -36,7 +34,7 @@ class UserProfileRepositoryImpl(private val userProfileDao: UserProfileDao, priv
       .compose(applyLoading())
   }
 
-  override suspend fun insertUserProfile(userProfile: UserProfileUiModel) {
+  /*override suspend fun insertUserProfile(userProfile: UserProfileUiModel) {
     userProfileDao?.insertUserProfile(userProfileUiToEntityMapper.mapFrom(userProfile))
   }
 
@@ -50,5 +48,5 @@ class UserProfileRepositoryImpl(private val userProfileDao: UserProfileDao, priv
     }
 
     return uiModelList
-  }
+  }*/
 }

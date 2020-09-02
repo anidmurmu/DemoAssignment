@@ -50,18 +50,18 @@ class UserProfileViewModel(private val getUserProfileUseCase: GetUserProfileUseC
     val data = emptyList<BaseBindingRVModel>()
     val dataFromNetwork = resource.data?.list
     var allProfiles: MutableLiveData<MutableList<UserProfileUiModel>>? = null
-    viewModelScope.launch(Dispatchers.IO) {
+    /*viewModelScope.launch(Dispatchers.IO) {
       dataFromNetwork?.forEach {
         getUserProfileUseCase.insertUserProfile(it)
       }
 
-      //allProfiles = getUserProfileUseCase.getAllUserProfiles()
-    }
+      allProfiles = getUserProfileUseCase.getAllUserProfiles()
+    }*/
 
     _userProfileMutableLiveData.value =
       UserProfileViewState(
         status = resource.status,
-        data = getViewableData(allProfiles?.value?.toMutableList()),
+        data = getViewableData(dataFromNetwork),
         error = resource.error
       )
     allProfiles?.value?.toMutableList()?.forEach {

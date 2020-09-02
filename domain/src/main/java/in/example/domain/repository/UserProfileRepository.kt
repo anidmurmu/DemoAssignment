@@ -10,6 +10,6 @@ import io.reactivex.rxjava3.core.Observable
 
 interface UserProfileRepository {
   fun getUserProfile(request: UserProfileRequestUiModel): Observable<Resource<UserProfileResponseUiModel>>
-  suspend fun insertUserProfile(userProfile: UserProfileUiModel)
-  suspend fun getAllUserProfiles(): MutableLiveData<MutableList<UserProfileUiModel>>
+  /*suspend fun insertUserProfile(userProfile: UserProfileUiModel)
+  suspend fun getAllUserProfiles(): MutableLiveData<MutableList<UserProfileUiModel>>*/
 }
