@@ -30,6 +30,6 @@ class FormFragment : DataBindingBaseFragment<FragmentFormBinding>() {
   }
 
   override fun setBaseStates() {
-
+    progressErrorState = model.statusState
   }
 }

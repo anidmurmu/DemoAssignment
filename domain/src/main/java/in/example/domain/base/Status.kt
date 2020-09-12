@@ -4,5 +4,7 @@ enum class Status {
 
     SUCCESS,
     LOADING,
-    ERROR
+    ERROR,
+    INTERNET_ERROR,
+    RESET_ERROR_LOADER
 }

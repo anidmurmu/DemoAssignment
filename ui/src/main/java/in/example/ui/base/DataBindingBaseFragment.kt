@@ -1,5 +1,6 @@
 package `in`.example.ui.base
 
+import `in`.example.domain.base.Status
 import `in`.example.ui.helper.NoInternetException
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 
 /**
@@ -29,6 +31,9 @@ abstract class DataBindingBaseFragment<in V : ViewDataBinding> : Fragment() {
 
   protected var loadingState: LiveData<BaseViewState<*>>? = null
 
+  protected var progressErrorState: MutableLiveData<Status>? = null
+  private var dynamicViewHandler: DynamicViewHandler? = null
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     if (layoutResource == NO_LAYOUT) return null
 
@@ -41,19 +46,17 @@ abstract class DataBindingBaseFragment<in V : ViewDataBinding> : Fragment() {
   }
 
   private fun observeChanges() {
-    loadingState?.observe(viewLifecycleOwner, Observer {
-      it?.let {
-        if (it.isLoading()) {
-          showProgress()
-        } else {
+    progressErrorState?.observe(viewLifecycleOwner, Observer {
+      when(it){
+        Status.LOADING -> showProgress()
+        Status.SUCCESS -> hideProgress()
+        Status.ERROR -> hideProgress()
+        Status.INTERNET_ERROR -> showInternetError()
+        Status.RESET_ERROR_LOADER -> {
           hideProgress()
-        }
-
-        if (it.error is NoInternetException) {
-          showInternetError()
-        } else {
           hideInternetError()
         }
+        else -> {}
       }
     })
   }

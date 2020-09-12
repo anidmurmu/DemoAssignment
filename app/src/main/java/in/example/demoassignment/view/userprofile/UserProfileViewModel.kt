@@ -38,6 +38,7 @@ class UserProfileViewModel(private val getUserProfileUseCase: GetUserProfileUseC
   }
 
   private fun onUserProfileReady(resource: Resource<UserProfileResponseUiModel>) {
+    statusState.postValue(resource.transformStatus())
     if (resource.error != null) {
       return
     }
